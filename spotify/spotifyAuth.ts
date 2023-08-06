@@ -1,7 +1,10 @@
 // https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
-
+import { createHash } from 'react-native-crypto';
+import { TextEncoder } from 'util';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import openLink from '../browser';
 // generate code verifier
-function generateRandomString(length) {
+function generateRandomString(length: number): string {
   let text = "";
   let possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -13,9 +16,9 @@ function generateRandomString(length) {
 }
 
 // hashes it and creates the Code Challenge
-async function generateCodeChallenge(codeVerifier) {
-  function base64encode(string) {
-    return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
+async function generateCodeChallenge(codeVerifier: string): Promise<string> {
+  function base64encode(string: ArrayBuffer): string {
+    return btoa(String.fromCharCode.apply(string))
       .replace(/\+/g, "-")
       .replace(/\//g, "_")
       .replace(/=+$/, "");
@@ -23,7 +26,7 @@ async function generateCodeChallenge(codeVerifier) {
 
   const encoder = new TextEncoder();
   const data = encoder.encode(codeVerifier);
-  const digest = await window.crypto.subtle.digest("SHA-256", data);
+  const digest = await createHash("sha256").update(data).digest();
 
   return base64encode(digest);
 }
@@ -39,6 +42,8 @@ const spotifyAuth = async () => {
   let state = generateRandomString(16);
   let scope = ""; // TODO: prob env
 
+  await AsyncStorage.setItem('code_verifier', codeVerifier);
+
   let args = new URLSearchParams({
     response_type: "code",
     client_id: clientId,
@@ -48,6 +53,8 @@ const spotifyAuth = async () => {
     code_challenge_method: "S256",
     code_challenge: codeChallenge,
   });
+
+  openLink('https://acciunts.spotify.com/authorize?' + args);
 };
 
 export default spotifyAuth;

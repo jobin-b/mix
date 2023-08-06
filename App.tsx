@@ -58,26 +58,22 @@ function Section({children, title}: SectionProps): JSX.Element {
 }
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = false;
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
-        barStyle={'dark-content'}
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={styles.container}>
-            <Button title='Sign in with Spotify' onPress={spotifyAuth}/>
-        </View>
-      </ScrollView>
+      <View
+        style={styles.container}>
+          <Button title='Sign in with Spotify' onPress={spotifyAuth} />
+      </View>
     </SafeAreaView>
   );
 }
@@ -90,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 100,
     paddingHorizontal: 24,
   },
   sectionTitle: {
