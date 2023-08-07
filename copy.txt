@@ -1,0 +1,4 @@
+Users/merinbabu/Documents/jobin/p2/ios/p2/AppDelegate.mm:52:49: error: no visible @interface for 'RCTBundleURLProvider' declares the selector 'jsBundleURLForBundleRoot:fallbackResource:'
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
