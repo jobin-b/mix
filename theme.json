@@ -1,0 +1,40 @@
+{
+  "color-primary-100": "#121212",
+  "color-primary-200": "#1C1C1C",
+  "color-primary-300": "#252525",
+  "color-primary-400": "#2E2E2E",
+  "color-primary-500": "#363636",
+  "color-primary-600": "#3F3F3F",
+  "color-primary-700": "#494949",
+  "color-primary-800": "#515151",
+  "color-primary-900": "#595959",
+
+  "color-success-500": "#1DB954",
+
+  "color-danger-500": "#D73A49",
+
+  "color-warning-500": "#FFA900",
+
+  "color-info-500": "#1ED760",
+
+  "color-basic-100": "#FFFFFF",
+  "color-basic-200": "#F2F2F2",
+  "color-basic-300": "#E5E5E5",
+  "color-basic-400": "#D9D9D9",
+  "color-basic-500": "#CCCCCC",
+  "color-basic-600": "#BFBFBF",
+  "color-basic-700": "#A6A6A6",
+  "color-basic-800": "#8C8C8C",
+  "color-basic-900": "#737373",
+
+  "color-text-basic": "#000000",
+  "color-text-hint": "#8A8A8A",
+  "color-text-disabled": "#4D4D4D",
+
+  "color-background-basic": "#121212",
+  "color-background-alternative": "#1C1C1C",
+  "color-background-basic-transparent-100": "rgba(18, 18, 18, 0.1)",
+
+  "color-border-basic": "#252525",
+  "color-border-alternative": "#363636"
+}
