@@ -1,5 +1,5 @@
-import Config from "react-native-config";
-import axios from "axios";
+import Config from 'react-native-config';
+import axios from 'axios';
 const axiosInstance = axios.create({
   baseURL: Config.BACKEND_URL,
   timeout: 5000,

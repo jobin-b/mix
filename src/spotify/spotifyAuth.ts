@@ -6,7 +6,7 @@ const spotifyAuth = async () => {
   const config = {
     
     clientId: 'bded58f2b15c4916ab05f83fa770d6f8',
-    redirectUrl: 'myapp://auth-callback',
+    redirectUrl: 'mix://auth-callback',
     serviceConfiguration: {
       authorizationEndpoint: 'https://accounts.spotify.com/authorize',
       tokenEndpoint: 'https://accounts.spotify.com/api/token',
