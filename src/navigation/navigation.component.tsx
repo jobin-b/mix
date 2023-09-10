@@ -1,10 +1,8 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Login from './login';
-import Signup from './signup';
-import Home from './Home';
-import {BottomNavigation, BottomNavigationTab} from '@ui-kitten/components';
+import Login from '../pages/login';
+import Signup from '../pages/signup';
 import {AccountNavigator} from './accountNavigation';
 
 const {Navigator, Screen} = createStackNavigator();

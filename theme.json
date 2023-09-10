@@ -45,7 +45,10 @@
   "color-danger-800": "#931050",
   "color-danger-900": "#7A0A4B",
 
+  "text-primary-color": "$color-primary-200",
+  "text-success-color": "$color-primary-200",
   "color-background-basic": "#121212",
+  "color-background-primary": "#121212",
   "color-background-alternative": "#1C1C1C",
   "color-background-basic-transparent-100": "rgba(18, 18, 18, 0.1)"
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Layout, Button, Input, useTheme, Text} from '@ui-kitten/components';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import axiosInstance from './AxiosInstance';
+import axiosInstance from '../AxiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Login({navigation}): JSX.Element {
@@ -12,20 +12,25 @@ function Login({navigation}): JSX.Element {
   const theme = useTheme();
 
   const loginUser = async () => {
-    try {
-      const res = (await axiosInstance.post('/login', {
-        username,
-        password,
-      })) as LoginResponse;
-      if (res.error) {
-        setError(res.error);
-        return;
-      }
-      await AsyncStorage.setItem('jwt_token', res.token);
-      navigation.navigate('Account');
-    } catch (err) {
-      console.error(err);
-    }
+    // DEV START
+    await AsyncStorage.setItem('jwt_token', 'jwt');
+    navigation.navigate('Account', {screen: 'Home'});
+    // DEV END
+    // try {
+    //   const res = (await axiosInstance.post('/login', {
+    //     username,
+    //     password,
+    //   })) as LoginResponse;
+    //   if (res.error) {
+    //     setError(res.error);
+    //     return;
+    //   }
+    //   await AsyncStorage.setItem('jwt_token', res.token);
+    //   await AsyncStorage.setItem('username', username);
+    //   navigation.navigate('Account');
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   const styles = StyleSheet.create({
@@ -33,6 +38,7 @@ function Login({navigation}): JSX.Element {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      gap: 1,
       backgroundColor: theme['color-background-basic'], // Spotify black
     },
     input: {
@@ -47,6 +53,10 @@ function Login({navigation}): JSX.Element {
       backgroundColor: theme['color-basic-100'], // White button background color
       marginBottom: 10,
     },
+    buttonInverse: {
+      backgroundColor: '#2E2728',
+      marginBottom: 10,
+    },
     title: {
       fontSize: 50,
       fontWeight: 'bold',
@@ -59,16 +69,18 @@ function Login({navigation}): JSX.Element {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Queue App</Text>
+    <Layout style={styles.container}>
       <View style={styles.container}>
+        <Text style={styles.title}>Queue App</Text>
         <Input
+          textContentType="username"
           style={styles.input}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
         />
         <Input
+          textContentType="password"
           style={styles.input}
           placeholder="Password"
           secureTextEntry
@@ -90,7 +102,7 @@ function Login({navigation}): JSX.Element {
           </Button>
         </View>
       </View>
-    </SafeAreaView>
+    </Layout>
   );
 }
 

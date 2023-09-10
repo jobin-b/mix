@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Layout, Button, Input, useTheme, Text} from '@ui-kitten/components';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import spotifyAuth from './spotify/spotifyAuth';
+import spotifyAuth from '../spotify/spotifyAuth';
 import {Link} from '@react-navigation/native';
-import axiosInstance from './AxiosInstance';
+import axiosInstance from '../AxiosInstance';
 
 function Signup({navigation}): JSX.Element {
   const [username, setUsername] = useState('');
@@ -46,7 +46,7 @@ function Signup({navigation}): JSX.Element {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Layout style={styles.container}>
       <Text style={styles.text}>Queue App</Text>
       <View>
         <Input
@@ -57,12 +57,14 @@ function Signup({navigation}): JSX.Element {
           onChangeText={setEmail}
         />
         <Input
+          textContentType="username"
           style={styles.input}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
         />
         <Input
+          textContentType="password"
           style={styles.input}
           placeholder="Password"
           secureTextEntry
@@ -74,11 +76,11 @@ function Signup({navigation}): JSX.Element {
             <Text style={styles.buttonText}>Sign up</Text>
           </Button>
           <Button onPress={() => navigation.navigate('Login')}>
-            <Text>Already have an Account? Sign up</Text>
+            <Text>Already have an Account? Log in</Text>
           </Button>
         </View>
       </View>
-    </SafeAreaView>
+    </Layout>
   );
 }
 
