@@ -4,6 +4,7 @@ import {SafeAreaView, StyleSheet, View} from 'react-native';
 import spotifyAuth from '../spotify/spotifyAuth';
 import {Link} from '@react-navigation/native';
 import axiosInstance from '../AxiosInstance';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Signup({navigation}): JSX.Element {
   const [username, setUsername] = useState('');
@@ -12,8 +13,22 @@ function Signup({navigation}): JSX.Element {
 
   const theme = useTheme();
 
-  const signupUser = () => {
-    axiosInstance.post('/signup', {email, username, password});
+  const signupUser = async () => {
+    try {
+      const response = (await axiosInstance.post('/signup', {
+        email,
+        username,
+        password,
+      })) as LoginResponse;
+      if (response.data.success) {
+        navigation.navigate('Login');
+      }
+      await AsyncStorage.setItem('jwt_token', response.data.token);
+      await AsyncStorage.setItem('username', username);
+      navigation.navigate('Account');
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const styles = StyleSheet.create({

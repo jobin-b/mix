@@ -4,11 +4,22 @@ interface ReqStatus {
 }
 
 interface LoginResponse {
+  status: string;
+  message: string;
+  data?: LoginData;
+}
+
+interface LoginData {
   error?: string;
   success?: string;
   token?: string;
 }
 
+interface BackendResponse {
+  status: string;
+  message: string;
+  data?: any;
+}
 interface Queue {
   snapshotId: string;
   playlistId: string;

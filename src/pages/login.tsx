@@ -13,24 +13,21 @@ function Login({navigation}): JSX.Element {
 
   const loginUser = async () => {
     // DEV START
-    await AsyncStorage.setItem('jwt_token', 'jwt');
-    navigation.navigate('Account', {screen: 'Home'});
+    // await AsyncStorage.setItem('jwt_token', 'jwt');
+    // navigation.navigate('Account', {screen: 'Home'});
     // DEV END
-    // try {
-    //   const res = (await axiosInstance.post('/login', {
-    //     username,
-    //     password,
-    //   })) as LoginResponse;
-    //   if (res.error) {
-    //     setError(res.error);
-    //     return;
-    //   }
-    //   await AsyncStorage.setItem('jwt_token', res.token);
-    //   await AsyncStorage.setItem('username', username);
-    //   navigation.navigate('Account');
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const res = (await axiosInstance.post('/login', {
+        username,
+        password,
+      })) as LoginResponse;
+      await AsyncStorage.setItem('jwt_token', res.data.token);
+      await AsyncStorage.setItem('username', username);
+      navigation.navigate('Account');
+    } catch (err) {
+      console.error(err.response.data.error);
+      setError(err.response.data.error);
+    }
   };
 
   const styles = StyleSheet.create({
