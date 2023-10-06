@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Layout, Text, useTheme} from '@ui-kitten/components';
+import {Button, Input, Layout, Text, useTheme} from '@ui-kitten/components';
 import {useEffect} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import SearchInput from '../components/searchInput';
 
-function Search({navigation}): JSX.Element {
+function FriendInfo(friend: Boolean = true): JSX.Element {
   const theme = useTheme();
 
   const styles = StyleSheet.create({
@@ -18,12 +17,16 @@ function Search({navigation}): JSX.Element {
   });
 
   return (
-    <Layout style={styles.container}>
-      <SearchInput />
-      {/* Previously played songs */}
-      <Text>Nothing played yet...</Text>
-    </Layout>
+    <View>
+      {/* ICON */}
+      {/* onclick={showProfile()} */}
+      <View>
+        <Text>Friend Name</Text>
+        <Text>Friend Username</Text>
+      </View>
+      {friend ? <Button>Add</Button> : null}
+    </View>
   );
 }
 
-export default Search;
+export default FriendInfo;

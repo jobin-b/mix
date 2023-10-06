@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Layout, Text, useTheme} from '@ui-kitten/components';
 import {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {Button, SafeAreaView, StyleSheet, View} from 'react-native';
 import {checkSpotifyStatus} from '../spotify/spotifyAuth';
 
 function Home({navigation}): JSX.Element {
@@ -36,7 +36,18 @@ function Home({navigation}): JSX.Element {
 
   return (
     <Layout style={styles.container}>
-      <Text>HOME</Text>
+      <Text>Welcome {username}!</Text>
+      {spotifyStatus ? (
+        <View>
+          <Text>Start a Mix</Text>
+          <Button
+            title="Create"
+            onPress={() => navigation.navigate('CreateMix')}
+          />
+        </View>
+      ) : (
+        <Text>Spotify is not connected</Text>
+      )}
     </Layout>
   );
 }

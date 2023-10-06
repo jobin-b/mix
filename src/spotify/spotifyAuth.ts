@@ -35,9 +35,17 @@ const spotifyAuth = async () => {
 };
 
 export const checkSpotifyStatus = async (): Promise<boolean> => {
-  const res = await axiosInstance.get('/spotify/spotifyStatus');
-  const status = res.data.status;
-  return status;
+  try {
+    const res = await axiosInstance.get('/spotify/status');
+    if (res.data.error) {
+      console.log(res.data.error);
+    }
+    const success = res.data.success;
+    return success;
+  } catch (err) {
+    console.log('ERROR at Spotify Premium Status', err);
+  }
+  return false;
 };
 
 export default spotifyAuth;

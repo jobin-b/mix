@@ -1,5 +1,7 @@
 import Config from 'react-native-config';
 import axios from 'axios';
+console.log(Config.BACKEND_URL);
+console.log('hehe');
 const axiosInstance = axios.create({
   baseURL: Config.BACKEND_URL,
   timeout: 5000,
